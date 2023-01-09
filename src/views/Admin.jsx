@@ -1,16 +1,12 @@
 import React from "react";
+import { Outlet } from "react-router-dom";
 import AdminNav from "../components/AdminNav";
-import LeftCanvas from "../components/LeftCanvas";
-import Section from "../components/Section";
 
 const Admin = () => {
   return (
     <div style={{ display: "flex" }}>
-      <LeftCanvas />
-      <div>
-        <AdminNav />
-        <Section />
-      </div>
+      <AdminNav />
+      <Outlet />
     </div>
   );
 };
