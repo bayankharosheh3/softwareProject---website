@@ -1,9 +1,11 @@
-import React from 'react'
+import React from "react";
+import MyCard from "../components/Dashboard/Card";
+import Page from "../components/Dashboard/Page";
 
 const Dashboard = () => {
   return (
-    <div>Dashboard</div>
-  )
-}
+      <Page />
+  );
+};
 
-export default Dashboard
+export default Dashboard;

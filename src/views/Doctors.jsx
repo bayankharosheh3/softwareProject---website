@@ -1,9 +1,8 @@
-import React from 'react'
+import React from "react";
+import Page from "../components/Doctors/Page";
 
 const Doctors = () => {
-  return (
-    <div>Doctors</div>
-  )
-}
+  return <Page />;
+};
 
-export default Doctors
+export default Doctors;

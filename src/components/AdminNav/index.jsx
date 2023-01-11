@@ -87,13 +87,18 @@ const AdminNav = () => {
           <div className={Style.logoContainer}>
             <img src="assets/images/logo.png" alt="logo" />
           </div>
-          <span className={Style.logoName}>Clinics</span>
+          <span className={Style.logoName}>Clinics Website</span>
         </div>
         <ul className={Style.navLinks}>
           {menuItem.map((item, index) => {
             return (
               <li key={index}>
-                <NavLink href="#" to={item.path} activeclassName="active" className={Style.link}>
+                <NavLink
+                  href="#"
+                  to={item.path}
+                  activeclassName="active"
+                  className={Style.link}
+                >
                   {item.icon}
                   <span className={Style.linkName}>{item.name}</span>
                 </NavLink>
@@ -117,7 +122,9 @@ const AdminNav = () => {
       <section className={Style.homeSection}>
         <div className={Style.homeContent}>
           <i class="bx bx-menu"></i>
-          <Outlet/>
+        </div>
+        <div className={Style.section}>
+          <Outlet />
         </div>
       </section>
     </>

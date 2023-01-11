@@ -1,0 +1,29 @@
+.container {
+  display: flex;
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.color {
+  background-color: #7bc89c  !important;
+  border: #7bc89c 1px solid !important;
+  margin-left: 10px;
+  color: white;
+}
+
+.border {
+  border: #7bc89c 1px solid  !important;
+  background-color: white  !important;
+  margin-left: 10px;
+  color: #7bc89c  !important;
+}
+
+.dropdown {
+  background-color: #7bc89c !important;
+  border: #7bc89c;
+  padding: 10px;
+  padding-top: 7px;
+  padding-bottom: 7px;
+  color: #fff;
+  border-radius: 4px;
+}

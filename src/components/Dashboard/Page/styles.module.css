@@ -1,0 +1,11 @@
+.container{
+    width: 95%;
+    margin: auto;
+    margin-top: 60px;
+}
+
+.row{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}

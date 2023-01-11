@@ -6,7 +6,7 @@ const Admin = () => {
   return (
     <div style={{ display: "flex" }}>
       <AdminNav />
-      <Outlet />
+      {/* <Outlet /> */}
     </div>
   );
 };
