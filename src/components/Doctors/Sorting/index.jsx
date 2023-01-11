@@ -2,20 +2,30 @@ import React, { useState } from "react";
 import { Button, Dropdown, DropdownButton, Modal } from "react-bootstrap";
 import Style from "./styles.module.css";
 
-const Sorting = ({ setSelect, select, deleted, doctors, setDoctors,setSort }) => {
-  console.log(deleted);
+const Sorting = ({
+  setSelect,
+  select,
+  checked,
+  doctors,
+  setDoctors,
+  setSort,
+}) => {
+  console.log(checked);
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
 
   const handleShow = () => setShow(true);
 
-  const handelDelete = (deleted) => {
+  const handelDelete = (checked) => {
     var filtered = doctors;
-    deleted.map((item) => {
-      filtered = filtered.filter((doctor) => doctor.id !== item.id);
-      console.log(item);
+    checked.map((item) => {
+      if (item.checked == true) {
+        filtered = filtered.filter((doctor) => doctor.id !== item.id);
+        console.log(item);
+      }
     });
+
     setDoctors(filtered);
   };
   return (
@@ -26,9 +36,9 @@ const Sorting = ({ setSelect, select, deleted, doctors, setDoctors,setSort }) =>
         title="Sort"
         bsPrefix={Style.dropdown}
       >
-        <Dropdown.Item onClick={()=>setSort('id')}>id</Dropdown.Item>
-        <Dropdown.Item onClick={()=>setSort('name')}>Name</Dropdown.Item>
-        <Dropdown.Item onClick={()=>setSort('rate')}>Rate</Dropdown.Item>
+        <Dropdown.Item onClick={() => setSort("id")}>id</Dropdown.Item>
+        <Dropdown.Item onClick={() => setSort("name")}>Name</Dropdown.Item>
+        <Dropdown.Item onClick={() => setSort("rate")}>Rate</Dropdown.Item>
       </DropdownButton>
       <Button
         variant="primary"
@@ -38,7 +48,7 @@ const Sorting = ({ setSelect, select, deleted, doctors, setDoctors,setSort }) =>
       >
         select
       </Button>
-      {deleted.length != 0 && (
+      {checked.length != 0 && (
         <Button
           variant="primary"
           size="sm"
@@ -65,7 +75,7 @@ const Sorting = ({ setSelect, select, deleted, doctors, setDoctors,setSort }) =>
           <Button
             variant="danger"
             onClick={() => {
-              handelDelete(deleted);
+              handelDelete(checked);
               setShow(false);
             }}
           >

@@ -2,17 +2,13 @@ import React, { useState } from "react";
 import { Badge, Button, Modal } from "react-bootstrap";
 import Table from "react-bootstrap/Table";
 import Style from "./styles.module.css";
-import Swal from "sweetalert2";
 
-const NewTable = ({
-  newDoctors,
-  doctors,
-  columns,
-  setDoctors,
-  setNewDoctors,
-}) => {
+const CTable = ({ columns, clinics, setClinics }) => {
   const [show, setShow] = useState(false);
   const [deleteId, setDeleteId] = useState("");
+
+  var color = "success";
+  var status = "work";
 
   const handleClose = () => setShow(false);
 
@@ -22,25 +18,10 @@ const NewTable = ({
   };
 
   const handelDelete = (id) => {
-    const filtered = newDoctors.filter((doctor) => doctor.id !== id);
-    setNewDoctors(filtered);
+    const filtered = clinics.filter((clinic) => clinic.id !== id);
+    setClinics(filtered);
   };
 
-  const handelConfirm = (doctor) => {
-    setDoctors([
-      {
-        id: doctor.id,
-        img: "https://th.bing.com/th/id/OIP.8EE42TOHDLaxi3CxwgFulAHaGf?pid=ImgDet&w=920&h=806&rs=1",
-        name: doctor.name,
-        email: doctor.email,
-        clinic: doctor.specialty,
-        status: true,
-        schedule: [0],
-        rate: 0,
-      },
-      ...doctors,
-    ]);
-  };
   return (
     <div className={Style.tableContainer}>
       <Table className={Style.table}>
@@ -54,7 +35,15 @@ const NewTable = ({
           </tr>
         </thead>
         <tbody>
-          {newDoctors.map((item, index) => {
+          {clinics.map((item, index) => {
+            if (!item.status) {
+              color = "primary";
+              status = "close";
+            } else {
+              color = "success";
+              status = "open";
+            }
+            // console.log(item.id)
             return (
               <tr key={index}>
                 <td>
@@ -62,32 +51,38 @@ const NewTable = ({
                 </td>
                 <td>
                   <div className={Style.profile}>
+                    <div className={Style.imgContainer}>
+                      <img src={item.img} alt="user-img" />
+                    </div>
                     <div className={Style.textContainer}>
                       <p className={Style.para}>{item.name}</p>
+                      <p className={Style.detail}>{item.specialty}</p>
                     </div>
                   </div>
                 </td>
                 <td>
                   <div className={Style.textContainer}>
-                    <p className={Style.detail}>{item.email}</p>
-                    <p className={Style.detail}>{item.phone}</p>
+                    <p className={Style.para}>{item.location}</p>
                   </div>
                 </td>
                 <td>
-                  <p className={Style.para2}>{item.specialty}</p>
+                  <div className={Style.textContainer}>
+                    <span>{item.doctors}</span>
+                  </div>
+                </td>
+                <td>
+                  <span className={Style.para2}>{item.rate}</span>
+                  <i class="bx bxs-star" style={{ color: "#7bc89c" }}></i>
+                </td>
+                <td>
+                  <Badge bg={color}>{status}</Badge>
+                </td>
+                <td>
+                  <span className={Style.para2}>{item.income.avg}</span>
+                  <i class="bx bx-dollar"></i>
                 </td>
                 <td>
                   <div className={Style.btns}>
-                    <Button
-                      size="sm"
-                      variant="success"
-                      onClick={() => {
-                        handelConfirm(item);
-                        handelDelete(item.id);
-                      }}
-                    >
-                      <i class="bx bx-check-double"></i>
-                    </Button>
                     <Button
                       size="sm"
                       variant="danger"
@@ -102,6 +97,7 @@ const NewTable = ({
           })}
         </tbody>
       </Table>
+
       <Modal
         show={show}
         onHide={handleClose}
@@ -111,7 +107,7 @@ const NewTable = ({
         <Modal.Header closeButton>
           <Modal.Title>Confirm Delete</Modal.Title>
         </Modal.Header>
-        <Modal.Body>are you sure you want delete this account?</Modal.Body>
+        <Modal.Body>are you sure you want delete this Clinic?</Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
             No
@@ -131,4 +127,4 @@ const NewTable = ({
   );
 };
 
-export default NewTable;
+export default CTable;

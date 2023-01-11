@@ -1,5 +1,11 @@
 import React, { useState } from "react";
-import { Badge, Button, Modal } from "react-bootstrap";
+import {
+  Badge,
+  Button,
+  Modal,
+  ToggleButton,
+  ToggleButtonGroup,
+} from "react-bootstrap";
 import Table from "react-bootstrap/Table";
 import Style from "./styles.module.css";
 
@@ -9,14 +15,18 @@ const MyTable = ({
   columns,
   setDoctors,
   select,
-  deleted,
-  setDeleted,
+  checked,
+  setChecked,
 }) => {
   const [show, setShow] = useState(false);
+  const [deleteId, setDeleteId] = useState("");
 
   const handleClose = () => setShow(false);
 
-  const handleShow = () => setShow(true);
+  const handleShow = (id) => {
+    setShow(true);
+    setDeleteId(id);
+  };
 
   var color = "success";
   var status = "work";
@@ -94,14 +104,39 @@ const MyTable = ({
                 </td>
                 <td>
                   <div className={Style.btn}>
-                    <Button size="sm" variant="danger" onClick={handleShow}>
+                    <Button
+                      size="sm"
+                      variant="danger"
+                      onClick={() => handleShow(item.id)}
+                    >
                       <i class="bx bx-trash"></i>
                     </Button>
                   </div>
                 </td>
                 {select && (
                   <td>
-                    <Button
+                    <ToggleButtonGroup
+                      type="checkbox"
+                      defaultValue={[1, sorted.length]}
+                      className="mb-2"
+                    >
+                      <ToggleButton
+                        size="sm"
+                        id={item.id}
+                        type="checkbox"
+                        variant="outline-primary"
+                        checked={checked}
+                        value={item.id}
+                        onChange={(e) =>
+                          setChecked([
+                            ...checked,
+                            { id: item.id, checked: e.currentTarget.checked },
+                          ])
+                        }
+                      >
+                        <i class="bx bx-check"></i>{" "}
+                      </ToggleButton>
+                      {/* <Button
                       size="sm"
                       variant={"primary"}
                       onClick={() => {
@@ -109,41 +144,40 @@ const MyTable = ({
                       }}
                     >
                       <i class="bx bx-check"></i>{" "}
-                    </Button>
+                    </Button> */}
+                    </ToggleButtonGroup>
                   </td>
                 )}
-                <Modal
-                  show={show}
-                  onHide={handleClose}
-                  backdrop="static"
-                  keyboard={false}
-                >
-                  <Modal.Header closeButton>
-                    <Modal.Title>Confirm Delete</Modal.Title>
-                  </Modal.Header>
-                  <Modal.Body>
-                    are you sure you want delete this account?
-                  </Modal.Body>
-                  <Modal.Footer>
-                    <Button variant="secondary" onClick={handleClose}>
-                      No
-                    </Button>
-                    <Button
-                      variant="danger"
-                      onClick={() => {
-                        handelDelete(item.id);
-                        setShow(false);
-                      }}
-                    >
-                      Delete
-                    </Button>
-                  </Modal.Footer>
-                </Modal>
               </tr>
             );
           })}
         </tbody>
       </Table>
+      <Modal
+        show={show}
+        onHide={handleClose}
+        backdrop="static"
+        keyboard={false}
+      >
+        <Modal.Header closeButton>
+          <Modal.Title>Confirm Delete</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>are you sure you want delete this account?</Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            No
+          </Button>
+          <Button
+            variant="danger"
+            onClick={() => {
+              handelDelete(deleteId);
+              setShow(false);
+            }}
+          >
+            Delete
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </div>
   );
 };
