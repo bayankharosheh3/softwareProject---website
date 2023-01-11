@@ -42,7 +42,7 @@ const MyTable = ({
     } else if (sort === "rate") {
       return p1.rate < p2.rate ? 1 : p1.rate > p2.rate ? -1 : 0;
     } else if (sort === "name") {
-      return p1.name < p2.name ? 1 : p1.name > p2.name ? -1 : 0;
+      return p1.name > p2.name ? 1 : p1.name < p2.name ? -1 : 0;
     } else return 0;
   });
 

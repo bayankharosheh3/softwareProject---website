@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, Dropdown, DropdownButton, Modal } from "react-bootstrap";
+import { Button, Dropdown, DropdownButton, Form, Modal } from "react-bootstrap";
 import Style from "./styles.module.css";
 
 const Sorting = ({
@@ -30,16 +30,19 @@ const Sorting = ({
   };
   return (
     <div className={Style.container}>
-      <DropdownButton
+      <Form.Label htmlFor="sort" bsPrefix={Style.label}>
+        Sort By
+      </Form.Label>
+      <Form.Select
         size="sm"
-        id="dropdown-basic-button"
-        title="Sort"
+        id="Sort"
         bsPrefix={Style.dropdown}
+        onChange={(e) => setSort(e.target.value)}
       >
-        <Dropdown.Item onClick={() => setSort("id")}>id</Dropdown.Item>
-        <Dropdown.Item onClick={() => setSort("name")}>Name</Dropdown.Item>
-        <Dropdown.Item onClick={() => setSort("rate")}>Rate</Dropdown.Item>
-      </DropdownButton>
+        <option value="id">id</option>
+        <option value="name">Name</option>
+        <option value="rate">Rate</option>
+      </Form.Select>
       <Button
         variant="primary"
         size="sm"

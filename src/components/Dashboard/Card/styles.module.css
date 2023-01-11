@@ -1,9 +1,7 @@
-.link{
-    text-decoration: none;
-    margin-right: 13px;
-
+.link {
+  text-decoration: none;
+  margin-right: 13px;
 }
-
 
 .card {
   background-color: white;
@@ -15,47 +13,45 @@
   align-items: center;
   width: 282px;
   margin-bottom: 20px;
-  transition: transform .4s;
-
+  transition: transform 0.4s;
 }
 
-.card:hover{
-    transform: scale(1.02);
+.card:hover {
+  transform: scale(1.02);
 }
-.cardIcon{
-    line-height: 61px;
-    color: #ffffff;
-    width: 60px;
-    height: 60px;
-    display: inline-block;
-    font-weight: 500;
-    font-size: 30px;
-    text-align: center;
-    border-radius: 100%;
-    background: rgba(40,110,251,.1);
-}
-
-.cardIcon i{
-    color: #286efb;
+.cardIcon {
+  line-height: 61px;
+  color: #ffffff;
+  width: 60px;
+  height: 60px;
+  display: inline-block;
+  font-weight: 500;
+  font-size: 30px;
+  text-align: center;
+  border-radius: 100%;
+  background: rgba(40, 110, 251, 0.1);
 }
 
-.cardText{
-    margin-top: 7px;
-    margin-left: 10px;
+.cardIcon i {
+  color: #7bc89c;
 }
 
-.cardTitle{
-    line-height: 24px;
-    font-size: 16px;
-    font-weight: 500;
-    color: #465161;
-    margin-bottom: 7px;
-    text-transform: capitalize;
+.cardText {
+  margin-top: 7px;
+  margin-left: 10px;
 }
 
-.number{
-    line-height: 22px;
-    font-size: 16px;
-    color: #465161;
+.cardTitle {
+  line-height: 24px;
+  font-size: 16px;
+  font-weight: 500;
+  color: #465161;
+  margin-bottom: 7px;
+  text-transform: capitalize;
+}
 
+.number {
+  line-height: 22px;
+  font-size: 16px;
+  color: #465161;
 }

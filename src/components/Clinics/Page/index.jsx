@@ -9,10 +9,10 @@ const Page = () => {
     {
       id: "1",
       specialty: "Psychiatry",
-      name: "clinic1",
+      name: "Clinic1",
       img: "http://www.hcchospital.org/Uploads/files/HCCH%20Medical%20Clinic%20Front(1).jpg",
       doctors: 3,
-      rate: 3.5,
+      rate: 2.5,
       status: true,
       income: {
         avg: 4000,
@@ -58,7 +58,7 @@ const Page = () => {
       name: "clinic3",
       img: "http://www.hcchospital.org/Uploads/files/HCCH%20Medical%20Clinic%20Front(1).jpg",
       doctors: 1,
-      rate: 3.5,
+      rate: 5,
       status: true,
       income: 6000,
       income: {
@@ -82,7 +82,7 @@ const Page = () => {
       name: "clinic4",
       img: "https://static.bookinghealth.com/uploads/clinics/gallery/m/4498-1408-otr_Depositphotos_316360964_xl-2015-1.jpg",
       doctors: 8,
-      rate: 3.5,
+      rate: 4.5,
       status: false,
       income: {
         avg: 4000,
@@ -102,7 +102,7 @@ const Page = () => {
   ]);
   return (
     <div>
-      <MyForm />
+      <MyForm clinics={clinics} setClinics={setClinics} />
       <CTable columns={columns} clinics={clinics} setClinics={setClinics} />
     </div>
   );

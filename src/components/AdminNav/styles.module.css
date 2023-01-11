@@ -7,6 +7,10 @@
   font-family: "Poppins", sans-serif;
 }
 
+body {
+  background: #e4e9f7;
+}
+
 .sidebar {
   position: fixed;
   top: 0;
@@ -190,7 +194,6 @@
 
 .homeSection {
   position: relative;
-  background: #e4e9f7;
   height: 100vh;
   left: 21%;
   width: calc(100% - 21%);

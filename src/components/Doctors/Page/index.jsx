@@ -76,7 +76,6 @@ const Page = () => {
 
   const [select, setSelect] = useState(false);
 
-  const [deleted, setDeleted] = useState([]);
 
   const [sort, setSort] = useState("id");
 
