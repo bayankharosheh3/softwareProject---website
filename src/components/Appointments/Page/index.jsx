@@ -1,83 +1,122 @@
 import React from "react";
 import { useState } from "react";
 import Sorting from "../../Sorting";
-import AppTable from "../../Table";
+import AppTable from "../AppTable";
 
 const Page = () => {
-  const [doctors, setDoctors] = useState([
+  const [appointments, setAppointments] = useState([
     {
       id: "1",
-      img: "https://mdbootstrap.com/img/new/avatars/8.jpg",
-      name: "John Doe",
-      email: "john.doe@gmail.com",
-      clinic: "Ophthalmology",
+      doctor: {
+        img: "https://mdbootstrap.com/img/new/avatars/8.jpg",
+        name: "John Doe",
+        email: "john.doe@gmail.com",
+      },
+      patient: {
+        img: "https://mdbootstrap.com/img/new/avatars/1.jpg",
+        name: "John Doe",
+        email: "john.doe@gmail.com",
+      },
+      clinic: "clinic",
+      date: "30/3/2023",
+      time: "12:00 am",
       status: true,
-      schedule: ["9:00", "11:00", "12:00"],
-      confirmed: true,
-      rate: 2.5,
-    },
-    {
-      id: "2",
-      img: "https://mdbootstrap.com/img/new/avatars/8.jpg",
-      name: "John Doe2",
-      email: "john.doe@gmail.com",
-      clinic: "Ophthalmology",
-      status: true,
-      schedule: ["9:00", "11:00", "12:00"],
-      confirmed: true,
-      rate: 3,
     },
     {
       id: "3",
-      img: "https://mdbootstrap.com/img/new/avatars/8.jpg",
-      name: "John Doe",
-      email: "john.doe@gmail.com",
-      clinic: "Ophthalmology",
+      doctor: {
+        img: "https://mdbootstrap.com/img/new/avatars/8.jpg",
+        name: "aJohn Doe",
+        email: "john.doe@gmail.com",
+      },
+      patient: {
+        img: "https://mdbootstrap.com/img/new/avatars/1.jpg",
+        name: "John Doe",
+        email: "john.doe@gmail.com",
+      },
+      clinic: "clinic",
+      date: "30/3/2023",
+      time: "12:00 am",
+      status: true,
+    },
+    {
+      id: "2",
+      doctor: {
+        img: "https://mdbootstrap.com/img/new/avatars/8.jpg",
+        name: "John Doe",
+        email: "john.doe@gmail.com",
+      },
+      patient: {
+        img: "https://mdbootstrap.com/img/new/avatars/1.jpg",
+        name: "John Doe",
+        email: "john.doe@gmail.com",
+      },
+      clinic: "bclinic",
+      date: "29/3/2023",
+      time: "12:00 am",
+      status: true,
+    },
+    {
+      id: "5",
+      doctor: {
+        img: "https://mdbootstrap.com/img/new/avatars/8.jpg",
+        name: "John Doe",
+        email: "john.doe@gmail.com",
+      },
+      patient: {
+        img: "https://mdbootstrap.com/img/new/avatars/1.jpg",
+        name: "John Doe",
+        email: "john.doe@gmail.com",
+      },
+      clinic: "aclinic",
+      date: "30/3/2023",
+      time: "12:00 am",
       status: false,
-      schedule: ["9:00", "11:00", "12:00"],
-      confirmed: true,
-      rate: 5,
     },
     {
       id: "4",
-      img: "https://mdbootstrap.com/img/new/avatars/8.jpg",
-      name: "John Doe",
-      email: "john.doe@gmail.com",
-      clinic: "Ophthalmology",
-      status: true,
-      schedule: ["9:00", "11:00", "12:00"],
-      confirmed: true,
-      rate: 1.5,
+      doctor: {
+        img: "https://mdbootstrap.com/img/new/avatars/8.jpg",
+        name: "John Doe",
+        email: "john.doe@gmail.com",
+      },
+      patient: {
+        img: "https://mdbootstrap.com/img/new/avatars/1.jpg",
+        name: "aJohn Doe",
+        email: "john.doe@gmail.com",
+      },
+      clinic: "clinic",
+      date: "31/3/2023",
+      time: "12:00 am",
+      status: false,
     },
   ]);
-
 
   const [select, setSelect] = useState(false);
 
   const [sort, setSort] = useState("id");
 
-
-  const columns = ["Doctor", "Clinic", "Status", "Schedule", "Rate", "Account"];
+  const columns = ["Date", "Time", "Patient", "Doctor", "Clinic", "Status"];
 
   const [checked, setChecked] = useState([]);
 
-  const sortOptions = ["id","name","rate"];
+  const sortOptions = ["id", "date", "Doctor name", "Patient name", "clinic","up coming"];
 
   return (
     <div>
       <Sorting
-        rows={doctors}
-        setRows={setDoctors}
+        rows={appointments}
+        setRows={setAppointments}
         select={select}
         setSelect={setSelect}
         setSort={setSort}
         checked={checked}
-        options= {sortOptions}
+        options={sortOptions}
       />
       <AppTable
-        rows={doctors}
+        rows={appointments}
         columns={columns}
-        setRows={setDoctors}
+        setRows={setAppointments}
         sort={sort}
         select={select}
         checked={checked}

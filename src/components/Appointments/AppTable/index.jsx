@@ -29,7 +29,7 @@ const AppTable = ({
   };
 
   var color = "success";
-  var status = "work";
+  var status = "";
 
   const handelDelete = (id) => {
     const filtered = rows.filter((item) => item.id !== id);
@@ -39,10 +39,24 @@ const AppTable = ({
   const sorted = rows.sort((p1, p2) => {
     if (sort === "id") {
       return p1.id > p2.id ? 1 : p1.id < p2.id ? -1 : 0;
-    } else if (sort === "rate") {
-      return p1.rate < p2.rate ? 1 : p1.rate > p2.rate ? -1 : 0;
-    } else if (sort === "name") {
-      return p1.name > p2.name ? 1 : p1.name < p2.name ? -1 : 0;
+    } else if (sort === "date") {
+      return p1.date > p2.date ? 1 : p1.date < p2.date ? -1 : 0;
+    } else if (sort === "Doctor name") {
+      return p1.doctor.name < p2.doctor.name
+        ? 1
+        : p1.doctor.name > p2.doctor.name
+        ? -1
+        : 0;
+    } else if (sort === "Patient name") {
+      return p1.patient.name < p2.patient.name
+        ? 1
+        : p1.patient.name > p2.patient.name
+        ? -1
+        : 0;
+    } else if (sort === "clinic") {
+      return p1.clinic > p2.clinic ? 1 : p1.clinic < p2.clinic ? -1 : 0;
+    } else if (sort === "up coming") {
+      return p1.status > p2.status ? 1 : p1.status < p2.status ? -1 : 0;
     } else return 0;
   });
 
@@ -61,11 +75,11 @@ const AppTable = ({
         <tbody>
           {sorted.map((item, index) => {
             if (!item?.status) {
-              color = "danger";
-              status = "not working";
+              color = "primary";
+              status = "up coming";
             } else {
               color = "success";
-              status = "working";
+              status = "past";
             }
 
             return (
@@ -74,33 +88,38 @@ const AppTable = ({
                   <span className={Style.number}>{item.id}</span>
                 </td>
                 <td>
+                  <span className={Style.number}>{item.time}</span>
+                </td>
+                <td>
+                  <span className={Style.number}>{item.date}</span>
+                </td>
+                <td>
                   <div className={Style.profile}>
                     <div className={Style.imgContainer}>
-                      <img src={item.img} alt="user-img" />
+                      <img src={item.patient.img} alt="user-img" />
                     </div>
                     <div className={Style.textContainer}>
-                      <p className={Style.para}>{item.name}</p>
-                      <p className={Style.detail}>{item.email}</p>
+                      <p className={Style.para}>{item.patient.name}</p>
+                      <p className={Style.detail}>{item.patient.email}</p>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <div className={Style.profile}>
+                    <div className={Style.imgContainer}>
+                      <img src={item.doctor.img} alt="user-img" />
+                    </div>
+                    <div className={Style.textContainer}>
+                      <p className={Style.para}>{item.doctor.name}</p>
+                      <p className={Style.detail}>{item.doctor.email}</p>
                     </div>
                   </div>
                 </td>
                 <td>
                   <p className={Style.para}>{item.clinic}</p>
-                  {/* <p className={Style.detail}>IT department</p> */}
                 </td>
                 <td>
                   <Badge bg={color}>{status}</Badge>
-                </td>
-                <td>
-                  {item.schedule.map((item1) => {
-                    return <div>{item1}</div>;
-                  })}
-                </td>
-                <td>
-                  <div>
-                    <span> {item.rate}</span>
-                    <i class="bx bxs-star" style={{ color: "#7bc89c" }}></i>
-                  </div>
                 </td>
                 <td>
                   <div className={Style.btn}>
