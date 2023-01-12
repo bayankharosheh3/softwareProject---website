@@ -1,76 +1,26 @@
 import React from "react";
 import { useState } from "react";
 import Sorting from "../../Sorting";
-import MyTable from "../../Table";
+import LabsTable from "../LabsTable";
 
 const Page = () => {
   const [doctors, setDoctors] = useState([
     {
       id: "1",
-      img: "https://mdbootstrap.com/img/new/avatars/8.jpg",
+      img: "http://www.hcchospital.org/Uploads/files/HCCH%20Medical%20Clinic%20Front(1).jpg",
       name: "John Doe",
-      email: "john.doe@gmail.com",
-      clinic: "Ophthalmology",
-      status: true,
-      schedule: ["9:00", "11:00", "12:00"],
-      confirmed: true,
-      rate: 2.5,
-    },
-    {
-      id: "2",
-      img: "https://mdbootstrap.com/img/new/avatars/8.jpg",
-      name: "John Doe2",
-      email: "john.doe@gmail.com",
-      clinic: "Ophthalmology",
-      status: true,
-      schedule: ["9:00", "11:00", "12:00"],
-      confirmed: true,
-      rate: 3,
-    },
-    {
-      id: "3",
-      img: "https://mdbootstrap.com/img/new/avatars/8.jpg",
-      name: "John Doe",
-      email: "john.doe@gmail.com",
-      clinic: "Ophthalmology",
+      phone: "23444444",
+      employees: 3,
       status: false,
-      schedule: ["9:00", "11:00", "12:00"],
-      confirmed: true,
-      rate: 5,
     },
-    {
-      id: "4",
-      img: "https://mdbootstrap.com/img/new/avatars/8.jpg",
-      name: "John Doe",
-      email: "john.doe@gmail.com",
-      clinic: "Ophthalmology",
-      status: true,
-      schedule: ["9:00", "11:00", "12:00"],
-      confirmed: true,
-      rate: 1.5,
-    },
-  ]);
-  const [newDoctors, setNewDoctors] = useState([
-    {
-      id: "1",
-      name: "John Doe",
-      email: "john.doe@gmail.com",
-      phone: "059999999",
-      specialty: "Ophthalmology",
-    },
+
     {
       id: "2",
+      img: "http://www.hcchospital.org/Uploads/files/HCCH%20Medical%20Clinic%20Front(1).jpg",
       name: "John Doe",
-      email: "john.doe@gmail.com",
-      phone: "059999999",
-      specialty: "Ophthalmology",
-    },
-    {
-      id: "3",
-      name: "John Doe",
-      email: "john.doe@gmail.com",
-      phone: "059999999",
-      specialty: "Ophthalmology",
+      phone: "23444444",
+      employees: 3,
+      status: true,
     },
   ]);
 
@@ -78,13 +28,11 @@ const Page = () => {
 
   const [sort, setSort] = useState("id");
 
-  const columns2 = ["Name", "Email", "Specialty", "Confirm"];
-
-  const columns = ["Doctor", "Clinic", "Status", "Schedule", "Rate", "Account"];
+  const columns = ["Lab", "Employees", "Status"];
 
   const [checked, setChecked] = useState([]);
 
-  const sortOptions = ["id", "name", "rate"];
+  const sortOptions = ["id", "name"];
 
   return (
     <div>
@@ -97,7 +45,7 @@ const Page = () => {
         checked={checked}
         options={sortOptions}
       />
-      <MyTable
+      <LabsTable
         rows={doctors}
         columns={columns}
         setRows={setDoctors}

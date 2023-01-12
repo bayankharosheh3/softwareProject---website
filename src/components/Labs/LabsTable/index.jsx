@@ -9,7 +9,7 @@ import {
 import Table from "react-bootstrap/Table";
 import Style from "./styles.module.css";
 
-const AppTable = ({
+const LabsTable = ({
   sort,
   rows,
   columns,
@@ -76,10 +76,10 @@ const AppTable = ({
           {sorted.map((item, index) => {
             if (!item?.status) {
               color = "primary";
-              status = "up coming";
+              status = "not working";
             } else {
               color = "success";
-              status = "past";
+              status = "working";
             }
 
             return (
@@ -87,38 +87,20 @@ const AppTable = ({
                 <td>
                   <span className={Style.number}>{item.id}</span>
                 </td>
-
-                <td>
-                  <span className={Style.number}>{item.date}</span>
-                </td>
-                <td>
-                  <span className={Style.number}>{item.time}</span>
-                </td>
                 <td>
                   <div className={Style.profile}>
                     <div className={Style.imgContainer}>
-                      <img src={item.patient.img} alt="user-img" />
+                      <img src={item.img} alt="user-img" />
                     </div>
                     <div className={Style.textContainer}>
-                      <p className={Style.para}>{item.patient.name}</p>
-                      <p className={Style.detail}>{item.patient.email}</p>
+                      <p className={Style.para}>{item.name}</p>
+                      <p className={Style.detail}>{item.phone}</p>
                     </div>
                   </div>
                 </td>
                 <td>
-                  <div className={Style.profile}>
-                    <div className={Style.imgContainer}>
-                      <img src={item.doctor.img} alt="user-img" />
-                    </div>
-                    <div className={Style.textContainer}>
-                      <p className={Style.para}>{item.doctor.name}</p>
-                      <p className={Style.detail}>{item.doctor.email}</p>
-                    </div>
-                  </div>
-                </td>
-                <td>
-                  <p className={Style.para}>{item.clinic}</p>
-                </td>
+                  <span className={Style.number}>{item.employees}</span>
+                </td>                            
                 <td>
                   <Badge bg={color}>{status}</Badge>
                 </td>
@@ -202,4 +184,4 @@ const AppTable = ({
   );
 };
 
-export default AppTable;
+export default LabsTable;
