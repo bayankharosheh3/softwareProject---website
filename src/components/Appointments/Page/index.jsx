@@ -1,8 +1,7 @@
 import React from "react";
 import { useState } from "react";
-import NewTable from "../NewTable";
 import Sorting from "../../Sorting";
-import MyTable from "../../Table";
+import AppTable from "../../Table";
 
 const Page = () => {
   const [doctors, setDoctors] = useState([
@@ -51,34 +50,12 @@ const Page = () => {
       rate: 1.5,
     },
   ]);
-  const [newDoctors, setNewDoctors] = useState([
-    {
-      id: "1",
-      name: "John Doe",
-      email: "john.doe@gmail.com",
-      phone: "059999999",
-      specialty: "Ophthalmology",
-    },
-    {
-        id: "2",
-        name: "John Doe",
-        email: "john.doe@gmail.com",
-        phone: "059999999",
-        specialty: "Ophthalmology",
-      }, {
-        id: "3",
-        name: "John Doe",
-        email: "john.doe@gmail.com",
-        phone: "059999999",
-        specialty: "Ophthalmology",
-      },
-  ]);
+
 
   const [select, setSelect] = useState(false);
 
   const [sort, setSort] = useState("id");
 
-  const columns2 = ["Name", "Email", "Specialty", "Confirm"];
 
   const columns = ["Doctor", "Clinic", "Status", "Schedule", "Rate", "Account"];
 
@@ -88,13 +65,6 @@ const Page = () => {
 
   return (
     <div>
-      <NewTable
-        doctors={doctors}
-        columns={columns2}
-        setDoctors={setDoctors}
-        setNewDoctors={setNewDoctors}
-        newDoctors={newDoctors}
-      />
       <Sorting
         rows={doctors}
         setRows={setDoctors}
@@ -104,7 +74,7 @@ const Page = () => {
         checked={checked}
         options= {sortOptions}
       />
-      <MyTable
+      <AppTable
         rows={doctors}
         columns={columns}
         setRows={setDoctors}

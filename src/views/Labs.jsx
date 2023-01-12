@@ -1,9 +1,12 @@
-import React from 'react'
+import React from "react";
+import Page from "../components/Labs/Page";
 
 const Labs = () => {
   return (
-    <div>Labs</div>
-  )
-}
+    <div>
+      <Page />
+    </div>
+  );
+};
 
-export default Labs
+export default Labs;

@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Badge, Button, Modal } from "react-bootstrap";
 import Table from "react-bootstrap/Table";
 import Style from "./styles.module.css";
-import Swal from "sweetalert2";
 
 const NewTable = ({
   newDoctors,

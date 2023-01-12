@@ -9,11 +9,11 @@ import {
 import Table from "react-bootstrap/Table";
 import Style from "./styles.module.css";
 
-const MyTable = ({
+const PatientsTable = ({
   sort,
-  doctors,
+  rows,
   columns,
-  setDoctors,
+  setRows,
   select,
   checked,
   setChecked,
@@ -28,18 +28,21 @@ const MyTable = ({
     setDeleteId(id);
   };
 
-  var color = "success";
-  var status = "work";
+  var color = "danger";
+  var status = "not uploaded";
+
+  var color2 = "danger";
+  var status2 = "not answered";
 
   const handelDelete = (id) => {
-    const filtered = doctors.filter((doctor) => doctor.id !== id);
-    setDoctors(filtered);
+    const filtered = rows.filter((item) => item.id !== id);
+    setRows(filtered);
   };
 
-  const sorted = doctors.sort((p1, p2) => {
+  const sorted = rows.sort((p1, p2) => {
     if (sort === "id") {
       return p1.id > p2.id ? 1 : p1.id < p2.id ? -1 : 0;
-    } else if (sort === "rate") {
+    } else if (sort === "last appointment") {
       return p1.rate < p2.rate ? 1 : p1.rate > p2.rate ? -1 : 0;
     } else if (sort === "name") {
       return p1.name > p2.name ? 1 : p1.name < p2.name ? -1 : 0;
@@ -60,12 +63,20 @@ const MyTable = ({
         </thead>
         <tbody>
           {sorted.map((item, index) => {
-            if (!item?.status) {
+            if (!item.uploaded) {
               color = "danger";
-              status = "not working";
+              status = "not uploaded";
             } else {
               color = "success";
-              status = "working";
+              status = "uploaded";
+            }
+
+            if (!item.answered) {
+              color2 = "danger";
+              status2 = "not answered";
+            } else {
+              color2 = "success";
+              status2 = "answered";
             }
 
             return (
@@ -85,23 +96,26 @@ const MyTable = ({
                   </div>
                 </td>
                 <td>
-                  <p className={Style.para}>{item.clinic}</p>
-                  {/* <p className={Style.detail}>IT department</p> */}
-                </td>
-                <td>
-                  <Badge bg={color}>{status}</Badge>
-                </td>
-                <td>
-                  {item.schedule.map((item1) => {
-                    return <div>{item1}</div>;
-                  })}
-                </td>
-                <td>
-                  <div>
-                    <span> {item.rate}</span>
-                    <i class="bx bxs-star" style={{ color: "#7bc89c" }}></i>
+                  <div className={Style.textContainer}>
+                    <p className={Style.para}>
+                      Doctor: {item.lastAppointment.doctor}
+                    </p>
+                    <p className={Style.detail}>
+                      Date: {item.lastAppointment.date}
+                    </p>
                   </div>
                 </td>
+                <td>
+                  <td>
+                    <Badge bg={color}>{status}</Badge>
+                  </td>
+                </td>
+                <td>
+                  <td>
+                    <Badge bg={color2}>{status2}</Badge>
+                  </td>
+                </td>
+
                 <td>
                   <div className={Style.btn}>
                     <Button
@@ -182,4 +196,4 @@ const MyTable = ({
   );
 };
 
-export default MyTable;
+export default PatientsTable;

@@ -1,12 +1,14 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { Button } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
 import Style from "./styles.module.css";
 
-const MyForm = ({ clinics,setClinics }) => {
+const MyForm = ({ clinics, setClinics }) => {
+  const id = useRef(5);
+
 
   const [clinic, setClinic] = useState({
-    id: "4",
+    id: id.current++,
     specialty: "",
     name: "",
     img: "https://static.bookinghealth.com/uploads/clinics/gallery/m/4498-1408-otr_Depositphotos_316360964_xl-2015-1.jpg",
@@ -28,14 +30,13 @@ const MyForm = ({ clinics,setClinics }) => {
     location: "",
   });
 
-  const handelChange = (value,key) => {
-    setClinic({...clinic,[key]:value})
+  const handelChange = (value, key) => {
+    setClinic({ ...clinic, [key]: value });
   };
 
   const handelClick = () => {
-    setClinics([clinic,...clinics])
+    setClinics([clinic, ...clinics]);
   };
-
 
   return (
     <div className={Style.container}>
@@ -74,7 +75,11 @@ const MyForm = ({ clinics,setClinics }) => {
       <div className={Style.inputContainer}>
         <Form.Group controlId="formFileSm" className="mb-3">
           <Form.Label>Upload Picture</Form.Label>
-          <Form.Control type="file" size="sm"   onChange={(e) => handelChange(e.target.value, "img")}/>
+          <Form.Control
+            type="file"
+            size="sm"
+            onChange={(e) => handelChange(e.target.value, "img")}
+          />
         </Form.Group>
       </div>
       <div className={Style.button}>

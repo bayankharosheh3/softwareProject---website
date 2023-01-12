@@ -1,14 +1,15 @@
 import React, { useState } from "react";
-import { Button, Dropdown, DropdownButton, Form, Modal } from "react-bootstrap";
+import { Button,Form, Modal } from "react-bootstrap";
 import Style from "./styles.module.css";
 
 const Sorting = ({
   setSelect,
   select,
   checked,
-  doctors,
-  setDoctors,
+  rows,
+  setRows,
   setSort,
+  options,
 }) => {
   console.log(checked);
   const [show, setShow] = useState(false);
@@ -18,7 +19,7 @@ const Sorting = ({
   const handleShow = () => setShow(true);
 
   const handelDelete = (checked) => {
-    var filtered = doctors;
+    var filtered = rows;
     checked.map((item) => {
       if (item.checked == true) {
         filtered = filtered.filter((doctor) => doctor.id !== item.id);
@@ -26,7 +27,7 @@ const Sorting = ({
       }
     });
 
-    setDoctors(filtered);
+    setRows(filtered);
   };
   return (
     <div className={Style.container}>
@@ -39,9 +40,9 @@ const Sorting = ({
         bsPrefix={Style.dropdown}
         onChange={(e) => setSort(e.target.value)}
       >
-        <option value="id">id</option>
-        <option value="name">Name</option>
-        <option value="rate">Rate</option>
+        {options.map((option) => {
+          return <option value={option}>{option}</option>;
+        })}
       </Form.Select>
       <Button
         variant="primary"
