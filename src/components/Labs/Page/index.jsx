@@ -36,6 +36,7 @@ const Page = () => {
 
   return (
     <div>
+      <h3>All Labs</h3>
       <Sorting
         rows={doctors}
         setRows={setDoctors}

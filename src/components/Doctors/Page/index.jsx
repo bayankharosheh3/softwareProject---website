@@ -60,18 +60,19 @@ const Page = () => {
       specialty: "Ophthalmology",
     },
     {
-        id: "2",
-        name: "John Doe",
-        email: "john.doe@gmail.com",
-        phone: "059999999",
-        specialty: "Ophthalmology",
-      }, {
-        id: "3",
-        name: "John Doe",
-        email: "john.doe@gmail.com",
-        phone: "059999999",
-        specialty: "Ophthalmology",
-      },
+      id: "2",
+      name: "John Doe",
+      email: "john.doe@gmail.com",
+      phone: "059999999",
+      specialty: "Ophthalmology",
+    },
+    {
+      id: "3",
+      name: "John Doe",
+      email: "john.doe@gmail.com",
+      phone: "059999999",
+      specialty: "Ophthalmology",
+    },
   ]);
 
   const [select, setSelect] = useState(false);
@@ -84,10 +85,11 @@ const Page = () => {
 
   const [checked, setChecked] = useState([]);
 
-  const sortOptions = ["id","name","rate"];
+  const sortOptions = ["id", "name", "rate"];
 
   return (
     <div>
+      <h3>Confirm Doctors' Accounts</h3>
       <NewTable
         doctors={doctors}
         columns={columns2}
@@ -95,6 +97,7 @@ const Page = () => {
         setNewDoctors={setNewDoctors}
         newDoctors={newDoctors}
       />
+      <h3>All Doctors</h3>
       <Sorting
         rows={doctors}
         setRows={setDoctors}
@@ -102,7 +105,7 @@ const Page = () => {
         setSelect={setSelect}
         setSort={setSort}
         checked={checked}
-        options= {sortOptions}
+        options={sortOptions}
       />
       <MyTable
         rows={doctors}

@@ -100,10 +100,18 @@ const Page = () => {
 
   const [checked, setChecked] = useState([]);
 
-  const sortOptions = ["id", "date", "Doctor name", "Patient name", "clinic","up coming"];
+  const sortOptions = [
+    "id",
+    "date",
+    "Doctor name",
+    "Patient name",
+    "clinic",
+    "up coming",
+  ];
 
   return (
     <div>
+      <h3>All Appointments</h3>
       <Sorting
         rows={appointments}
         setRows={setAppointments}

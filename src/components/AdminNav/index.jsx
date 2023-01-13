@@ -3,7 +3,7 @@ import { NavLink, Outlet } from "react-router-dom";
 import Style from "./styles.module.css";
 
 const AdminNav = () => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(true);
   const toggle = () => setIsOpen(!isOpen);
 
   const menuItem = [
@@ -51,7 +51,7 @@ const AdminNav = () => {
     //           Logo
     //         </h1>
     //         <div
-    //           style={{ marginLeft: isOpen ? "50px" : "0px" }}
+    //           style={{ marginLeft: isOpen ? "5.50px" : "0px" }}
     //           className="bars"
     //         >
     //           <button onClick={toggle}>
@@ -82,12 +82,15 @@ const AdminNav = () => {
     // </div>
 
     <>
-      <div className={Style.sidebar}>
+      <div
+        className={Style.sidebar}
+        style={isOpen ? { width: "21%" } : { width: "5.5%" }}
+      >
         <div className={Style.logoDetails}>
           <div className={Style.logoContainer}>
             <img src="assets/images/logo.png" alt="logo" />
           </div>
-          <span className={Style.logoName}>Clinics Website</span>
+          {isOpen && <span className={Style.logoName}>Clinics Website</span>}
         </div>
         <ul className={Style.navLinks}>
           {menuItem.map((item, index) => {
@@ -100,28 +103,39 @@ const AdminNav = () => {
                   className={Style.link}
                 >
                   {item.icon}
-                  <span className={Style.linkName}>{item.name}</span>
+                  {isOpen && (
+                    <span className={Style.linkName}>{item.name}</span>
+                  )}
                 </NavLink>
               </li>
             );
           })}
           <li>
-            <div className={Style.profileDetails}>
+            <div
+              className={Style.profileDetails}
+              style={isOpen ? { width: "21%" } : { width: "5.5%" }}
+            >
               <div className={Style.profileContent}>
                 {/* <img src="image/profile.jpg" /> */}
               </div>
-              <div>
-                <div className={Style.profileName}>Admin Profile</div>
-                <div className={Style.job}>log out</div>
-              </div>
+              {isOpen && (
+                <div>
+                  <div className={Style.profileName}>Admin Profile</div>
+                  <div className={Style.job}>log out</div>
+                </div>
+              )}
               <i class="bx bx-log-out"></i>
             </div>
           </li>
         </ul>
       </div>
-      <section className={Style.homeSection}>
+      <section
+                style={isOpen ? { width: "79%", left:"21%" } : { width: "95.5%" ,left:"5.5%"}}
+
+        className={Style.homeSection}
+      >
         <div className={Style.homeContent}>
-          <i class="bx bx-menu"></i>
+          <i class="bx bx-menu" onClick={toggle}></i>
         </div>
         <div className={Style.section}>
           <Outlet />
