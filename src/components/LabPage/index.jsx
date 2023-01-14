@@ -32,7 +32,7 @@ const LabPage = () => {
     } else {
       console.log(message);
       setMessage({ doctor: "", file: "", message: "", title: "" });
-      alert('Done')
+      alert("Done");
     }
   };
 
@@ -77,7 +77,8 @@ const LabPage = () => {
         <Form.Control
           id="message"
           type="area"
-          size="sm"
+          as="textarea"
+          rows={3}
           value={message.message}
           onChange={(e) => {
             handelChange(e.target.value, "message");
