@@ -55,7 +55,7 @@ const AppTable = ({
         : 0;
     } else if (sort === "clinic") {
       return p1.clinic > p2.clinic ? 1 : p1.clinic < p2.clinic ? -1 : 0;
-    } else if (sort === "up coming") {
+    } else if (sort === "Booking") {
       return p1.status > p2.status ? 1 : p1.status < p2.status ? -1 : 0;
     } else return 0;
   });
@@ -76,10 +76,10 @@ const AppTable = ({
           {sorted.map((item, index) => {
             if (!item?.status) {
               color = "primary";
-              status = "up coming";
+              status = "Not Booking";
             } else {
               color = "success";
-              status = "past";
+              status = "Booking";
             }
 
             return (

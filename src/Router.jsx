@@ -1,6 +1,8 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Admin from "./views/Admin";
+import Secretary from "./views/Secretary";
+
 import Appointments from "./views/Appointments";
 import Clinics from "./views/Clinics";
 import Dashboard from "./views/Dashboard";
@@ -10,6 +12,9 @@ import Patients from "./views/Patients";
 import Rating from "./views/Rating";
 import SignIn from "./views/SignIn";
 import SignUp from "./views/SignUp";
+import TodayAppointments from "./views/TodayAppointments";
+import DoctorTable from "./views/DoctorTable";
+import PatientHistory from "./views/PatientHistory";
 
 const Router = () => {
   return (
@@ -24,7 +29,13 @@ const Router = () => {
           <Route path="/patients" element={<Patients />} />
           <Route path="/labs" element={<Labs />} />
           <Route path="/appointments" element={<Appointments />} />
+          <Route path="/doctorTable" element={<DoctorTable />} />
+          <Route path="/patientHistory" element={<PatientHistory />} />
           <Route path="/rating" element={<Rating />} />
+        </Route>
+        <Route element={<Secretary />}>
+          <Route path="/today" element={<TodayAppointments />} />
+          <Route path="/sappointments" element={<Appointments />} />
         </Route>
       </Routes>
     </BrowserRouter>

@@ -11,7 +11,6 @@ const Page = () => {
       name: "John Doe",
       email: "john.doe@gmail.com",
       lastAppointment: { doctor: "Ali", date: "30/3" },
-      uploaded: true,
       answered: true,
     },
     {
@@ -20,7 +19,6 @@ const Page = () => {
       name: "John Doe",
       email: "john.doe@gmail.com",
       lastAppointment: { doctor: "Ali", date: "30/3" },
-      uploaded: false,
       answered: true,
     },
     {
@@ -29,7 +27,6 @@ const Page = () => {
       name: "John Doe",
       email: "john.doe@gmail.com",
       lastAppointment: { doctor: "Ali", date: "30/3" },
-      uploaded: false,
       answered: false,
     },
   ]);
@@ -38,7 +35,7 @@ const Page = () => {
 
   const [sort, setSort] = useState("id");
 
-  const columns = ["Patient", "Last Appointment", "Medical Files", "History"];
+  const columns = ["Patient", "Last Appointment", "History"];
 
   const [checked, setChecked] = useState([]);
 

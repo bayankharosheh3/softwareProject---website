@@ -61,9 +61,9 @@ export default class SignInForm extends Component {
           <div className={Style.linkContainer}>
             <Link className={Style.link}>Forget password?</Link>
           </div>
-          <button className={Style.btn} onClick={this.handelClick}>
+          <Link className={Style.btn} onClick={this.handelClick} to="/today">
             Sign in
-          </button>
+          </Link>
           <div className={Style.moveTo}>
             <span>Don't have an account?</span>
             {"  "}

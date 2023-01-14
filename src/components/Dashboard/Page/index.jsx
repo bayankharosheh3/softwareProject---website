@@ -7,12 +7,6 @@ import Style from "./styles.module.css";
 const Page = () => {
   const cards = [
     {
-      icon: <i class="bx bx-calendar-check"></i>,
-      title: "today appointments",
-      number: "0",
-      to: "/today",
-    },
-    {
       icon: <i class="bx bx-calendar"></i>,
       title: "all appointments",
       number: "0",
@@ -33,7 +27,7 @@ const Page = () => {
   ];
 
   const chart = {
-    months: ["January", "February", "March", "April", "May", "June"],
+    months: ["clinic1", "clinic2", "clinic3", "clinic4", "clinic5", "clinic6"],
     income: [30000, 56000, 50000, 78900, 40000, 45000],
   };
 
@@ -77,13 +71,12 @@ const Page = () => {
           return <MyCard {...item} />;
         })}
       </div>
-      <div className={Style.row}>
-        <div className={Style.child}>
-          <MyChart x={chart.months} y={chart.income} />
-        </div>
-        <div className={Style.child}>
-          <TodayTable rows={appointments} columns={columns} />
-        </div>
+
+      <div className={Style.child}>
+        <TodayTable rows={appointments} columns={columns} />
+      </div>
+      <div className={Style.child}>
+        <MyChart x={chart.months} y={chart.income} />
       </div>
     </div>
   );

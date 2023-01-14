@@ -7,7 +7,6 @@ import {
   ToggleButtonGroup,
 } from "react-bootstrap";
 import Table from "react-bootstrap/Table";
-import { Link, useNavigate } from "react-router-dom";
 import Style from "./styles.module.css";
 
 const MyTable = ({
@@ -22,8 +21,6 @@ const MyTable = ({
   const [show, setShow] = useState(false);
   const [deleteId, setDeleteId] = useState("");
 
-  const navigate = useNavigate();
-
   const handleClose = () => setShow(false);
 
   const handleShow = (id) => {
@@ -37,10 +34,6 @@ const MyTable = ({
   const handelDelete = (id) => {
     const filtered = rows.filter((item) => item.id !== id);
     setRows(filtered);
-  };
-
-  const navigateTo = (id) => {
-    navigate("/doctorTable",{ state: { DoctorId:id } })
   };
 
   const sorted = rows.sort((p1, p2) => {
@@ -99,14 +92,9 @@ const MyTable = ({
                   <Badge bg={color}>{status}</Badge>
                 </td>
                 <td>
-                  <Link></Link>
-                  <Button
-                    variant="outline-primary"
-                    size="sm"
-                    onClick={()=>navigateTo(item.id)}
-                  >
-                    view schedule
-                  </Button>
+                  {item.schedule.map((item1) => {
+                    return <div>{item1}</div>;
+                  })}
                 </td>
                 <td>
                   <div>

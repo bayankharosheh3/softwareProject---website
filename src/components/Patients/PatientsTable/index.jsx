@@ -7,6 +7,7 @@ import {
   ToggleButtonGroup,
 } from "react-bootstrap";
 import Table from "react-bootstrap/Table";
+import { useNavigate } from "react-router";
 import Style from "./styles.module.css";
 
 const PatientsTable = ({
@@ -20,12 +21,17 @@ const PatientsTable = ({
 }) => {
   const [show, setShow] = useState(false);
   const [deleteId, setDeleteId] = useState("");
+  const navigate = useNavigate();
 
   const handleClose = () => setShow(false);
 
   const handleShow = (id) => {
     setShow(true);
     setDeleteId(id);
+  };
+
+  const navigateTo = (id) => {
+    navigate("/patientHistory", { state: { DoctorId: id } });
   };
 
   var color = "danger";
@@ -58,6 +64,7 @@ const PatientsTable = ({
             {columns.map((item2) => (
               <th>{item2}</th>
             ))}
+            <th></th>
             <th></th>
           </tr>
         </thead>
@@ -106,13 +113,10 @@ const PatientsTable = ({
                   </div>
                 </td>
                 <td>
-                  <td>
-                    <Badge bg={color}>{status}</Badge>
-                  </td>
-                </td>
-                <td>
-                  <td>
-                    <Badge bg={color2}>{status2}</Badge>
+                  <td className={Style.linkTo}>
+                    <Badge bg={color2} onClick={() => navigateTo(item.id)}>
+                      {status2}
+                    </Badge>
                   </td>
                 </td>
 

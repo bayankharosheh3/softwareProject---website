@@ -106,12 +106,32 @@ const Page = () => {
     "Doctor name",
     "Patient name",
     "clinic",
-    "up coming",
+    "Booking",
   ];
 
   return (
     <div>
-      <h3>All Appointments</h3>
+      <h3>UP Coming Appointments</h3>
+      <Sorting
+        rows={appointments}
+        setRows={setAppointments}
+        select={select}
+        setSelect={setSelect}
+        setSort={setSort}
+        checked={checked}
+        options={sortOptions}
+      />
+      <AppTable
+        rows={appointments}
+        columns={columns}
+        setRows={setAppointments}
+        sort={sort}
+        select={select}
+        checked={checked}
+        setChecked={setChecked}
+      />
+
+      <h3>Past Appointments</h3>
       <Sorting
         rows={appointments}
         setRows={setAppointments}

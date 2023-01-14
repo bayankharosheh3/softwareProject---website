@@ -1,11 +1,19 @@
 import React, { useRef, useState } from "react";
-import { Button } from "react-bootstrap";
+import { Button, Modal } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
 import Style from "./styles.module.css";
 
 const MyForm = ({ clinics, setClinics }) => {
   const id = useRef(5);
 
+  const [show, setShow] = useState(false);
+
+  const [values, setValues] = useState({
+    specialty: "",
+    name: "",
+    img: "",
+    location: "",
+  });
 
   const [clinic, setClinic] = useState({
     id: id.current++,
@@ -35,7 +43,12 @@ const MyForm = ({ clinics, setClinics }) => {
   };
 
   const handelClick = () => {
-    setClinics([clinic, ...clinics]);
+    if (values.location == "" || values.name === "") {
+      setShow(true);
+    } else {
+      setClinics([clinic, ...clinics]);
+    }
+    setValues({ specialty: "", name: "", img: "", location: "" });
   };
 
   return (
@@ -47,7 +60,11 @@ const MyForm = ({ clinics, setClinics }) => {
           id="Name"
           type="text"
           size="sm"
-          onChange={(e) => handelChange(e.target.value, "name")}
+          value={values.name}
+          onChange={(e) => {
+            setValues({ ...values, name: e.target.value });
+            handelChange(e.target.value, "name");
+          }}
         />
       </div>
       <div className={Style.inputContainer}>
@@ -55,9 +72,12 @@ const MyForm = ({ clinics, setClinics }) => {
         <Form.Select
           aria-label="Default select example"
           size="sm"
-          onChange={(e) => handelChange(e.target.value, "specialty")}
+          value={values.specialty}
+          onChange={(e) => {
+            setValues({ ...values, specialty: e.target.value });
+            handelChange(e.target.value, "specialty");
+          }}
         >
-          <option></option>
           <option value="1">One</option>
           <option value="2">Two</option>
           <option value="3">Three</option>
@@ -69,7 +89,11 @@ const MyForm = ({ clinics, setClinics }) => {
           id="Location"
           type="text"
           size="sm"
-          onChange={(e) => handelChange(e.target.value, "location")}
+          value={values.location}
+          onChange={(e) => {
+            setValues({ ...values, location: e.target.value });
+            handelChange(e.target.value, "location");
+          }}
         />
       </div>
       <div className={Style.inputContainer}>
@@ -78,7 +102,11 @@ const MyForm = ({ clinics, setClinics }) => {
           <Form.Control
             type="file"
             size="sm"
-            onChange={(e) => handelChange(e.target.value, "img")}
+            value={values.img}
+            onChange={(e) => {
+              setValues({ ...values, img: e.target.value });
+              handelChange(e.target.value, "img");
+            }}
           />
         </Form.Group>
       </div>
@@ -87,6 +115,27 @@ const MyForm = ({ clinics, setClinics }) => {
           Add
         </Button>
       </div>
+      <Modal
+        show={show}
+        onHide={() => setShow(false)}
+        backdrop="static"
+        keyboard={false}
+      >
+        <Modal.Header closeButton>
+          <Modal.Title>Can't Add</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>Please fill the inputs</Modal.Body>
+        <Modal.Footer>
+          <Button
+            variant="primary"
+            onClick={() => {
+              setShow(false);
+            }}
+          >
+            ok
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </div>
   );
 };
