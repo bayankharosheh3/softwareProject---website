@@ -20,6 +20,8 @@ export default class SignInForm extends Component {
     this.props.navigate("/dashboard") //to admin pages
 
     // this.props.navigate("/today") to secretary pages 
+        // this.props.navigate("/lab") to lab pages 
+
 
     var Email = this.state.Email;
     var Password = this.state.Password;

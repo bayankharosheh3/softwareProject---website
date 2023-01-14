@@ -15,6 +15,8 @@ import SignUp from "./views/SignUp";
 import TodayAppointments from "./views/TodayAppointments";
 import DoctorTable from "./views/DoctorTable";
 import PatientHistory from "./views/PatientHistory";
+import Lab from "./views/Lab";
+import LabPage from "./components/LabPage";
 
 const Router = () => {
   return (
@@ -36,6 +38,9 @@ const Router = () => {
         <Route element={<Secretary />}>
           <Route path="/today" element={<TodayAppointments />} />
           <Route path="/sappointments" element={<Appointments />} />
+        </Route>
+        <Route element={<Lab />}>
+          <Route path="/lab" element={<LabPage />} />
         </Route>
       </Routes>
     </BrowserRouter>
