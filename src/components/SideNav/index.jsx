@@ -1,10 +1,12 @@
 import React, { useState } from "react";
-import { NavLink, Outlet } from "react-router-dom";
+import { Button } from "react-bootstrap";
+import { NavLink, Outlet, useNavigate } from "react-router-dom";
 import Style from "./styles.module.css";
 
 const SideNav = ({ menuItem, profile }) => {
   const [isOpen, setIsOpen] = useState(true);
   const toggle = () => setIsOpen(!isOpen);
+  const navigate = useNavigate()
 
   return (
     <>
@@ -50,7 +52,9 @@ const SideNav = ({ menuItem, profile }) => {
                   <div className={Style.job}>log out</div>
                 </div>
               )}
-              <i class="bx bx-log-out"></i>
+              <div onClick={()=>navigate('/signin')}>
+                <i class="bx bx-log-out"></i>
+              </div>
             </div>
           </li>
         </ul>
